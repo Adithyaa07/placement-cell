@@ -12,6 +12,8 @@ const Admin = (props) => {
         console.log(email);
     }
 
+    
+
     return (
         <div className="auth-form-container">
             <h2>Login</h2>
