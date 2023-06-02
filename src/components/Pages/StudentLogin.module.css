@@ -1,4 +1,121 @@
-.background{
+/* body{
+    background:#000;
+    font-family: 'Rubik', sans-serif;
+  
+  } */
+  .loginForm h2 {
+    padding: 35px 35px 0 35px;
+    font-weight: 300;
+  }
+  .loginForm .content {
+    padding: 35px;
+    /* text-align: center; */
+  }
+  /* .loginForm {
 
-    color: bisque;
+    display: inline-block;
+    background: #f3f3f3;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 2rem;
+    margin: 2rem 0 1rem 0
+  } */
+  .loginForm {
+    color:#493a3a;
+    background: #efe8e8;
+    
+    border-radius: 20rem;
+    width: 600px;
+    margin-top:125px;
+    margin-left :500px;
+    display: -webkit-box;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+            flex-direction: column;
+    border-radius: 20px;
+    box-shadow: 0 2px 25px rgba(0, 0, 0, 0.2);
+  }
+.action{
+  padding: 10px;
+  /* flex: content; */
 }
+.button{
+  justify-content: center;
+}
+.label{
+ 
+  padding-bottom: 15px;
+}
+
+.loginForm .inputField {
+      padding: 12px 5px;
+      border-radius: 20px;
+    }
+    .loginForm .inputField .input {
+      font-size: 16px;
+      display: block;
+      font-family: 'Rubik', sans-serif;
+      width: 100%;
+      padding: 10px;
+      border: 0;
+      border-radius: 10px;
+      border-bottom: 1px solid #747474;
+      outline: none;
+      -webkit-transition: all .2s;
+      transition: all .2s;
+    }
+    .loginForm  .inputField .input::-webkit-input-placeholder {
+      text-transform: uppercase;
+    } 
+    .loginForm .inputField .input::-moz-placeholder {
+      text-transform: uppercase;
+    }
+    .loginForm .inputField .input:-ms-input-placeholder {
+      text-transform: uppercase;
+    } 
+    .loginForm .inputField .input::-ms-input-placeholder {
+      text-transform: uppercase;
+    } 
+    .loginForm .inputField .input::placeholder {
+      text-transform: uppercase;
+    } 
+    .loginForm .inputField .input:focus {
+      border-color: #222;
+    }
+    .loginForm .actions {
+        margin-top: 5%;
+        margin-left: 40%;
+        margin-bottom: 10%;
+        display: -webkit-box;
+        display: flex;
+        -webkit-box-orient: horizontal;
+        -webkit-box-direction: normal;
+                flex-direction: row;
+      }
+      .loginForm .action .button {
+       
+        width: auto;
+        border: none;
+        padding: 20px;
+        font-family: 'Rubik', sans-serif;
+        cursor: pointer;
+        text-transform: uppercase;
+        background: #996c57;
+        color:#473939;
+       
+        border-radius: 10px;
+        letter-spacing: 0.2px;
+        outline: 0;
+        -webkit-transition: all .3s;
+        transition: all .3s;
+      }
+      .loginForm .action .button:hover {
+        background: #B0DDE4;
+      }
+      .actions{
+
+        border: #B0DDE4;
+
+      }
+      
