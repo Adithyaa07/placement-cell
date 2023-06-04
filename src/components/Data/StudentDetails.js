@@ -3,11 +3,16 @@ import { NavLink } from "react-router-dom";
 import { collection, query, onSnapshot } from "firebase/firestore";
 import { db } from "../../firebase-auth";
 import classes from "./studentDetails.module.css";
-
+import { auth } from "../../firebase-auth";
+import { signOut } from "firebase/auth";
 
 const StudDetails = () => {
   const usersCollectionRef = collection(db, "drives");
   const [details, setDetails] = useState([]);
+
+  const logout = () => {
+    signOut(auth);
+  }
 
   useEffect(() => {
     const q = query(usersCollectionRef);
@@ -65,6 +70,7 @@ const StudDetails = () => {
           <div>No drive details available</div>
         )}
       </div>
+      <button onClick={logout}>Logout</button>
     </>
   );
 };

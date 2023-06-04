@@ -33,18 +33,17 @@ const AdminPage = () => {
     });
 
     return () => unSub();
-  }, );
+  });
 
   return (
     <div>
       <div className={classes.classHeader}>
         <div className={classes.logo}>AdminPage</div>
         <div className={classes.right}>
-          <span className={classes.active}>Add</span>
+          <span className={classes.active}>Student Details</span>
           <NavLink to="/">
             <span className={classes.span}>Home</span>
           </NavLink>
-          <span className={classes.span}>contact Me</span>
         </div>
       </div>
       <section className={classes.add}>
@@ -58,8 +57,6 @@ const AdminPage = () => {
               isOpen={isOpen}
               contentLabel="Example Modal"
               onRequestClose={() => setIsOpen(false)}
-              // className="modal-content"
-              // overlayClassName="modal-overlay"
             >
               <div className={classes.modalContent}>
                 <AddDriveDetails />
@@ -72,7 +69,7 @@ const AdminPage = () => {
         <div className={classes.int1}>
           <div>
             <h2 className="h2">Drives</h2>
-            
+
             {users.map((user) => {
               return (
                 <div key={user.id} className={classes.driveCard}>

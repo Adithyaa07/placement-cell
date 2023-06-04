@@ -5,10 +5,10 @@ import { auth } from "../../firebase-auth";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import classes from "./StudentLogin.module.css";
 
-
 const Student = () => {
   const [email, setEmail] = useState("");
   const [pass, setPass] = useState("");
+
   const navigate = useNavigate();
 
   const login = async (e) => {
@@ -31,7 +31,9 @@ const Student = () => {
           <h2>Login</h2>
           <div className={classes.content}>
             <div className={classes.inputField}>
-              <label className={classes.label} htmlFor="email">Email:</label>
+              <label className={classes.label} htmlFor="email">
+                Email:
+              </label>
               <input
                 className={classes.input}
                 value={email}
@@ -43,7 +45,9 @@ const Student = () => {
               />
             </div>
             <div className={classes.inputField}>
-              <label className={classes.label} htmlFor="password">Password:</label>
+              <label className={classes.label} htmlFor="password">
+                Password:
+              </label>
               <input
                 className={classes.input}
                 value={pass}

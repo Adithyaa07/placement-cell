@@ -3,6 +3,8 @@ import { NavLink } from "react-router-dom";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../firebase-auth";
 import classes from "./Registration.module.css";
+import { addDoc, collection } from "firebase/firestore";
+import { db } from "../../firebase-auth";
 
 const Register = () => {
   const [registerEmail, setRegisterEmail] = useState("");
@@ -10,11 +12,17 @@ const Register = () => {
 
   const register = async () => {
     try {
-      const user = await createUserWithEmailAndPassword(
+      const res = await createUserWithEmailAndPassword(
         auth,
         registerEmail,
         registerPassword
       );
+      const user = res.user;
+      await addDoc(collection(db, "students"), {
+        uid: user.uid,
+        authProvider: 'local',
+        registerEmail,
+      });
       console.log(user);
       alert("Successfully registered");
     } catch (error) {
@@ -26,7 +34,7 @@ const Register = () => {
   return (
     <div className={classes.studentRegister}>
       <form className={classes.content}>
-        <h1>Student Registration</h1>
+        <h1 className={classes.title}>Student Registration</h1>
         <div className={classes.inputField}>
           <label className={classes.label} htmlFor="email">
             Email:
