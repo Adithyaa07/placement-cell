@@ -1,0 +1,56 @@
+/* studentDetails.module.css */
+.classHeader {
+    background-color: #f2f2f2;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .logo {
+    font-size: 24px;
+    font-weight: bold;
+  }
+  
+  .right {
+    display: flex;
+    gap: 20px;
+  }
+  
+  .active {
+    
+    font-weight: bold;
+  }
+  
+  .span {
+    font-weight: bold;
+  }
+  
+  .driveContainer {
+    margin-top: 20px;
+  }
+  
+  .driveCard {
+    background-color: #f9f9f9;
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-bottom: 10px;
+  }
+  
+  .driveTitle {
+    font-size: 20px;
+    font-weight: bold;
+  }
+  
+  .driveDetails {
+    margin-top: 10px;
+  }
+  
+  .driveLabel {
+    font-weight: bold;
+  }
+  
+  .driveValue {
+    margin-left: 5px;
+  }
+  

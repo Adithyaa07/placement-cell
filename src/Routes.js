@@ -6,8 +6,8 @@ import Student from "./components/Pages/StudentLogin";
 import Register from "./components/Pages/Registration";
 import Forgot from "./components/Pages/ForgotPass";
 import Admin from "./components/Pages/Admin";
-import AdminPage from "./components/Pages/AdminPage";
-import StudDetails from "./components/Pages/StudentDetails";
+import AdminPage from './components/Data/AdminPage';
+import StudDetails from "./components/Data/StudentDetails";
 
 
 
