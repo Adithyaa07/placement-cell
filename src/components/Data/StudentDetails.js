@@ -5,14 +5,18 @@ import { db } from "../../firebase-auth";
 import classes from "./studentDetails.module.css";
 import { auth } from "../../firebase-auth";
 import { signOut } from "firebase/auth";
+import ReactModal from "react-modal";
+import DisplayData from './DisplayData'
+// import StudentProfile from "./studentProfile";
 
 const StudDetails = () => {
   const usersCollectionRef = collection(db, "drives");
   const [details, setDetails] = useState([]);
+  const [isOpen, setIsOpen] = useState(false);
 
-  const logout = () => {
-    signOut(auth);
-  }
+  const logout = async () => {
+    await signOut(auth);
+  };
 
   useEffect(() => {
     const q = query(usersCollectionRef);
@@ -32,7 +36,21 @@ const StudDetails = () => {
       <div className={classes.classHeader}>
         <div className={classes.logo}>Student Details</div>
         <div className={classes.right}>
-          <span className={classes.active}>profile</span>
+          <NavLink onClick={() => setIsOpen(true)}>
+            <span className={classes.active}>profile</span>
+          </NavLink>
+          <ReactModal
+            isOpen={isOpen}
+            contentLabel="Example Modal"
+            onRequestClose={() => setIsOpen(false)}
+          >
+            <DisplayData />
+            <div className={classes.modalContent}>
+              <NavLink to="/studentDetails/studentProfile">
+                <button>Create / Update profile </button>
+              </NavLink>
+            </div>
+          </ReactModal>
           <NavLink to="/">
             <span className={classes.span}>Home</span>
           </NavLink>

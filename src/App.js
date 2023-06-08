@@ -1,13 +1,15 @@
-import React from 'react';
+import React from "react";
 
-// import { Router } from 'react-router-dom';
+import { AuthContextProvider } from "./context/AuthContext";
 
-import Route from './Routes';
+import Route from "./Routes";
 function App() {
   return (
-    
-  <Route />
-
+    <div>
+      <AuthContextProvider>
+        <Route />
+      </AuthContextProvider>
+    </div>
   );
 }
 

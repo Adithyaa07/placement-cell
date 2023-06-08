@@ -1,115 +1,30 @@
+.adminContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
 
-.body{
-  max-width: auto;;
-    background: #ffffff;
-    font-family: 'Rubik', sans-serif;
-  
-  }
-  .label{
- 
-    padding-bottom: 15px;
-    margin-bottom: 10px;
-    font-weight: 200;
-  }
-  .loginForm h1 {
-    padding: 35px 35px 0 35px;
-    font-weight: 300;
-  }
-  .loginForm .content {
-    padding: 35px;
-    
-  }
-  .input{
-    border-radius: 5px;
-  }
-  .authFormContainer {
+.input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+}
 
+.buttonContainer {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
 
-    background: #d0c3c3;
-   
-     
-     width: 600px;
-     margin-top:125px;
-     margin-left :500px;
-     display: -webkit-box;
-     display: flex;
-     -webkit-box-orient: vertical;
-     -webkit-box-direction: normal;
-             flex-direction: column;
-     border-radius: 20px;
-     box-shadow: 0 2px 25px rgba(0, 0, 0, 0.2);
-  }
-  /* .loginForm{
-    display: inline-block;
-    background: #f3f3f3;
-    border: 1px solid #ddd;
-    border-radius: 2px;
-    padding: 2rem;
-    margin: 2rem 0 1rem 0
-  } */
-  .loginForm .inputField {
-      padding: 12px 5px;
-    }
-    .loginForm .inputField .input {
-      font-size: 16px;
-      display: block;
-      font-family: 'Rubik', sans-serif;
-      width: 100%;
-      padding: 10px 1px;
-      border: 0;
-      border-bottom: 1px solid #747474;
-      outline: none;
-      -webkit-transition: all .2s;
-      transition: all .2s;
-    }
-    .loginForm .inputField .input::-webkit-input-placeholder {
-      text-transform: uppercase;
-    } 
-    .loginForm .inputField .input::-moz-placeholder {
-      text-transform: uppercase;
-    }
-    .loginForm .inputField .input:-ms-input-placeholder {
-      text-transform: uppercase;
-    } 
-    .loginForm .inputField .input::-ms-input-placeholder {
-      text-transform: uppercase;
-    } 
-    .loginForm .inputField .input::placeholder {
-      text-transform: uppercase;
-    } 
-    .loginForm .inputField .input:focus {
-      border-color: #222;
-    }
-    .loginForm .action {
-      margin-top: 5%;
-      margin-left: 40%;
-      margin-bottom: 10%;
-      display: -webkit-box;
-      display: flex;
-      -webkit-box-orient: horizontal;
-      -webkit-box-direction: normal;
-              flex-direction: row;
-    }
-    .loginForm .action .button {
-     
-      width: 100%;
-      border: none;
-      padding: 18px;
-      font-family: 'Rubik', sans-serif;
-      cursor: pointer;
-      text-transform: uppercase;
-      background: #286FB4;
-      color:#fff;
-      border-top-left-radius: 10px;
-      border-top-right-radius: 10px;
-      border-bottom-left-radius: 10px;
-      border-bottom-right-radius: 10px;
-      letter-spacing: 0.2px;
-      outline: 0;
-      -webkit-transition: all .3s;
-      transition: all .3s;
-    }
-    .loginForm .action .button:hover {
-      background: #B0DDE4;
-    }
-   
+.button {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+
+.button:hover {
+  background-color: #0056b3;
+}

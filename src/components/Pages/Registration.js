@@ -1,33 +1,27 @@
+/* eslint-disable no-unused-vars */
 import React, { useState } from "react";
-import { NavLink } from "react-router-dom";
-import { createUserWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../../firebase-auth";
+import { useNavigate } from "react-router-dom";
+
 import classes from "./Registration.module.css";
-import { addDoc, collection } from "firebase/firestore";
-import { db } from "../../firebase-auth";
+import { UserAuth } from "../../context/AuthContext";
 
 const Register = () => {
   const [registerEmail, setRegisterEmail] = useState("");
   const [registerPassword, setRegisterPassword] = useState("");
+  const [error, setError] = useState("");
 
-  const register = async () => {
+  const createUser = UserAuth();
+  const navigate = useNavigate();
+  const register = async (e) => {
+    e.preventDefault();
+    setError("");
     try {
-      const res = await createUserWithEmailAndPassword(
-        auth,
-        registerEmail,
-        registerPassword
-      );
-      const user = res.user;
-      await addDoc(collection(db, "students"), {
-        uid: user.uid,
-        authProvider: 'local',
-        registerEmail,
-      });
-      console.log(user);
-      alert("Successfully registered");
-    } catch (error) {
-      console.log(error.message);
-      alert(error.message);
+      await createUser(registerEmail, registerPassword);
+      alert("User created successfully");
+      navigate('/student')
+    } catch (e) {
+      setError(e.message);
+      console.log(e.message);
     }
   };
 
@@ -59,11 +53,12 @@ const Register = () => {
           />
         </div>
         <div className={classes.action}>
-          <NavLink to="/student">
-            <button className={classes.button} onClick={register}>
-              Confirm
-            </button>
-          </NavLink>
+          <button className={classes.button} onClick={register}>
+            Confirm
+          </button>
+          {/* <NavLink to="/student">
+            
+          </NavLink> */}
         </div>
       </form>
     </div>

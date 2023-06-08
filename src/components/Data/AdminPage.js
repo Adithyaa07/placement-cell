@@ -40,7 +40,9 @@ const AdminPage = () => {
       <div className={classes.classHeader}>
         <div className={classes.logo}>AdminPage</div>
         <div className={classes.right}>
-          <span className={classes.active}>Student Details</span>
+          <NavLink to="/AvailableStudents">
+            <span className={classes.active}>Student Details</span>
+          </NavLink>
           <NavLink to="/">
             <span className={classes.span}>Home</span>
           </NavLink>
@@ -69,47 +71,50 @@ const AdminPage = () => {
         <div className={classes.int1}>
           <div>
             <h2 className="h2">Drives</h2>
-
-            {users.map((user) => {
-              return (
-                <div key={user.id} className={classes.driveCard}>
-                  <h1 className={classes.driveTitle}>Title: {user.title}</h1>
-                  <div className={classes.driveDetails}>
-                    <span className={classes.driveLabel}>Eligibility:</span>
-                    <span className={classes.driveValue}>
-                      {user.eligibility}
-                    </span>
+            <div className={classes.container}>
+              {users.map((user) => {
+                return (
+                  <div key={user.id} className={classes.driveCard}>
+                    <h1 className={classes.driveTitle}>Title: {user.title}</h1>
+                    <div className={classes.driveDetails}>
+                      <span className={classes.driveLabel}>Eligibility:</span>
+                      <span className={classes.driveValue}>
+                        {user.eligibility}
+                      </span>
+                    </div>
+                    <div className={classes.driveDetails}>
+                      <span className={classes.driveLabel}>Role:</span>
+                      <span className={classes.driveValue}>{user.role}</span>
+                    </div>
+                    <div className={classes.driveDetails}>
+                      <span className={classes.driveLabel}>Package:</span>
+                      <span className={classes.driveValue}>{user.package}</span>
+                    </div>
+                    <div className={classes.driveDetails}>
+                      <span className={classes.driveLabel}>Location:</span>
+                      <span className={classes.driveValue}>
+                        {user.location}
+                      </span>
+                    </div>
+                    <div className={classes.driveDetails}>
+                      <span className={classes.driveLabel}>Apply here:</span>
+                      <span className={classes.driveValue}>
+                        {user.additional}
+                      </span>
+                    </div>
+                    <div>
+                      <button className={classes.driveButton}>Update</button>
+                      <button
+                        className={classes.driveButton}
+                        onClick={() => deleteDrive(user.id)}
+                      >
+                        Delete Drive
+                      </button>
+                    </div>
                   </div>
-                  <div className={classes.driveDetails}>
-                    <span className={classes.driveLabel}>Role:</span>
-                    <span className={classes.driveValue}>{user.role}</span>
-                  </div>
-                  <div className={classes.driveDetails}>
-                    <span className={classes.driveLabel}>Package:</span>
-                    <span className={classes.driveValue}>{user.package}</span>
-                  </div>
-                  <div className={classes.driveDetails}>
-                    <span className={classes.driveLabel}>Location:</span>
-                    <span className={classes.driveValue}>{user.location}</span>
-                  </div>
-                  <div className={classes.driveDetails}>
-                    <span className={classes.driveLabel}>Apply here:</span>
-                    <span className={classes.driveValue}>
-                      {user.additional}
-                    </span>
-                  </div>
-                  <div>
-                    <button className={classes.driveButton}>Update</button>
-                    <button
-                      className={classes.driveButton}
-                      onClick={() => deleteDrive(user.id)}
-                    >
-                      Delete Drive
-                    </button>
-                  </div>
-                </div>
-              );
-            })}
+                );
+              })}
+            </div>
           </div>
         </div>
       </section>
