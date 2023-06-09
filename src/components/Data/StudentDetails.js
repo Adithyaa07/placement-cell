@@ -1,18 +1,22 @@
 import React, { useEffect, useState } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, Navigate } from "react-router-dom";
 import { collection, query, onSnapshot } from "firebase/firestore";
 import { db } from "../../firebase-auth";
 import classes from "./studentDetails.module.css";
 import { auth } from "../../firebase-auth";
 import { signOut } from "firebase/auth";
 import ReactModal from "react-modal";
-import DisplayData from './DisplayData'
+import DisplayData from "./DisplayData";
+import { useContext } from "react";
+import { UserContext } from "../../context/AuthContext";
 // import StudentProfile from "./studentProfile";
 
 const StudDetails = () => {
   const usersCollectionRef = collection(db, "drives");
   const [details, setDetails] = useState([]);
   const [isOpen, setIsOpen] = useState(false);
+
+  const user = useContext(UserContext);
 
   const logout = async () => {
     await signOut(auth);
@@ -29,7 +33,11 @@ const StudDetails = () => {
     });
 
     return () => unSub();
-  });
+  }, [usersCollectionRef]);
+
+  if (!user) {
+    return <Navigate to="/student" />;
+  }
 
   return (
     <>
@@ -88,7 +96,7 @@ const StudDetails = () => {
           <div>No drive details available</div>
         )}
       </div>
-      <button onClick={logout}>Logout</button>
+      <button onClick={() => logout(user)}>Logout</button>
     </>
   );
 };

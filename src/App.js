@@ -1,14 +1,16 @@
+/* eslint-disable no-unused-vars */
 import React from "react";
-
-import { AuthContextProvider } from "./context/AuthContext";
-
+import { AuthContextProvider, UserContext } from "./context/AuthContext";
+import useUserData from "./hooks/userDataHook";
 import Route from "./Routes";
+
 function App() {
+  const user = useUserData();
   return (
     <div>
-      <AuthContextProvider>
+      <UserContext.Provider value={user} >
         <Route />
-      </AuthContextProvider>
+      </UserContext.Provider>
     </div>
   );
 }

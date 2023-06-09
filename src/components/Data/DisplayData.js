@@ -3,9 +3,13 @@ import { useState, useEffect } from "react";
 import { collection, query, onSnapshot } from "firebase/firestore";
 import { db } from "../../firebase-auth";
 import classes from "./displayData.module.css";
+import { useContext } from "react";
+import { UserContext } from "../../context/AuthContext";
+import { Navigate } from "react-router-dom";
 
 function DisplayData() {
   const usersCollectionRef = collection(db, "students");
+  const user = useContext(UserContext);
 
   const [details, setDetails] = useState([0]);
   useEffect(() => {
@@ -20,6 +24,9 @@ function DisplayData() {
 
     return () => unSub();
   });
+  if (!user) {
+    return <Navigate to="/student" />
+  }
   return (
     <div>
       {details && details.length > 0 ? (
