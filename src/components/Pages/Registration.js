@@ -3,14 +3,13 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import classes from "./Registration.module.css";
-import { UserAuth } from "../../context/AuthContext";
+import { createUser } from "../../context/AuthContext";
 
 const Register = () => {
   const [registerEmail, setRegisterEmail] = useState("");
   const [registerPassword, setRegisterPassword] = useState("");
   const [error, setError] = useState("");
 
-  const createUser = UserAuth();
   const navigate = useNavigate();
   const register = async (e) => {
     e.preventDefault();
@@ -18,7 +17,7 @@ const Register = () => {
     try {
       await createUser(registerEmail, registerPassword);
       alert("User created successfully");
-      navigate('/student')
+      navigate("/student");
     } catch (e) {
       setError(e.message);
       console.log(e.message);
@@ -56,9 +55,6 @@ const Register = () => {
           <button className={classes.button} onClick={register}>
             Confirm
           </button>
-          {/* <NavLink to="/student">
-            
-          </NavLink> */}
         </div>
       </form>
     </div>

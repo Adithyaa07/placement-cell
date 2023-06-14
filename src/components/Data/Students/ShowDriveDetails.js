@@ -1,26 +1,14 @@
-import React, { useEffect, useState } from "react";
-import { NavLink, Navigate } from "react-router-dom";
-import { collection, query, onSnapshot } from "firebase/firestore";
-import { db } from "../../firebase-auth";
+import React from "react";
 import classes from "./studentDetails.module.css";
-import { auth } from "../../firebase-auth";
-import { signOut } from "firebase/auth";
-import ReactModal from "react-modal";
-import DisplayData from "./DisplayData";
-import { useContext } from "react";
-import { UserContext } from "../../context/AuthContext";
-// import StudentProfile from "./studentProfile";
+import { useEffect, useState } from "react";
 
-const StudDetails = () => {
+import { collection, query, onSnapshot } from "firebase/firestore";
+import { db } from "../../../firebase-auth";
+function ShowDriveDetails() {
   const usersCollectionRef = collection(db, "drives");
+  const eventsRef = collection(db, "events");
   const [details, setDetails] = useState([]);
-  const [isOpen, setIsOpen] = useState(false);
-
-  const user = useContext(UserContext);
-
-  const logout = async () => {
-    await signOut(auth);
-  };
+  const [events, setEvents] = useState([]);
 
   useEffect(() => {
     const q = query(usersCollectionRef);
@@ -35,37 +23,23 @@ const StudDetails = () => {
     return () => unSub();
   }, [usersCollectionRef]);
 
-  if (!user) {
-    return <Navigate to="/student" />;
-  }
+  useEffect(() => {
+    const q = query(eventsRef);
+    const unSub = onSnapshot(q, (querySnapshot) => {
+      let eventsArr = [];
+      querySnapshot.forEach((doc) => {
+        eventsArr.push({ ...doc.data(), id: doc.id });
+      });
+      setEvents(eventsArr);
+    });
+
+    return () => unSub();
+  }, [eventsRef]);
 
   return (
-    <>
-      <div className={classes.classHeader}>
-        <div className={classes.logo}>Student Details</div>
-        <div className={classes.right}>
-          <NavLink onClick={() => setIsOpen(true)}>
-            <span className={classes.active}>profile</span>
-          </NavLink>
-          <ReactModal
-            isOpen={isOpen}
-            contentLabel="Example Modal"
-            onRequestClose={() => setIsOpen(false)}
-          >
-            <DisplayData />
-            <div className={classes.modalContent}>
-              <NavLink to="/studentDetails/studentProfile">
-                <button>Create / Update profile </button>
-              </NavLink>
-            </div>
-          </ReactModal>
-          <NavLink to="/">
-            <span className={classes.span}>Home</span>
-          </NavLink>
-        </div>
-      </div>
+    <div>
       <div className={classes.driveContainer}>
-        <h1>Available drive details</h1>
+        <h1>Available Drives </h1>
         {details && details.length > 0 ? (
           details.map((user) => (
             <div key={user.id} className={classes.driveCard}>
@@ -90,15 +64,33 @@ const StudDetails = () => {
                 <span className={classes.driveLabel}>Apply here:</span>
                 <span className={classes.driveValue}>{user.additional}</span>
               </div>
+              <button className={classes.button}> Apply Now</button>
             </div>
           ))
         ) : (
           <div>No drive details available</div>
         )}
+        <br />
+        <br />
       </div>
-      <button onClick={() => logout(user)}>Logout</button>
-    </>
+      <div>
+        <h1>Available Events</h1>
+        {events && events.length > 0 ? (
+          events.map((user) => (
+            <div key={user.id} className={classes.driveCard}>
+              <h1 className={classes.driveTitle}>Title: {user.title}</h1>
+              <div className={classes.driveDetails}>
+                <span className={classes.driveLabel}>Event Information:</span>
+                <span className={classes.driveValue}>{user.description}</span>
+              </div>
+            </div>
+          ))
+        ) : (
+          <div>No Events available</div>
+        )}
+      </div>
+    </div>
   );
-};
+}
 
-export default StudDetails;
+export default ShowDriveDetails;

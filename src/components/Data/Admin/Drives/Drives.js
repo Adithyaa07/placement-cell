@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
-import { NavLink } from "react-router-dom";
-import { db } from "../../firebase-auth";
+import React, { useEffect, useState } from "react";
+import classes from '../AdminPage.module.css'
+import { db } from "../../../../firebase-auth";
 import {
   collection,
   deleteDoc,
@@ -8,13 +8,10 @@ import {
   query,
   onSnapshot,
 } from "firebase/firestore";
-import AddDriveDetails from "./AddDriveDetails";
-import classes from "./AdminPage.module.css";
-import ReactModal from "react-modal";
 
-const AdminPage = () => {
-  const [isOpen, setIsOpen] = useState(false);
+function Drives() {
   const [users, setUsers] = useState([]);
+  // const [event, setEvent] = useState(false);
   const usersCollectionRef = collection(db, "drives");
 
   const deleteDrive = async (id) => {
@@ -37,36 +34,6 @@ const AdminPage = () => {
 
   return (
     <div>
-      <div className={classes.classHeader}>
-        <div className={classes.logo}>AdminPage</div>
-        <div className={classes.right}>
-          <NavLink to="/AvailableStudents">
-            <span className={classes.active}>Student Details</span>
-          </NavLink>
-          <NavLink to="/">
-            <span className={classes.span}>Home</span>
-          </NavLink>
-        </div>
-      </div>
-      <section className={classes.add}>
-        <div className={classes.sec}>
-          <div>
-            <h2>Add a New Job Details</h2>
-            <button onClick={() => setIsOpen(true)} className={classes.but}>
-              Add New Job
-            </button>
-            <ReactModal
-              isOpen={isOpen}
-              contentLabel="Example Modal"
-              onRequestClose={() => setIsOpen(false)}
-            >
-              <div className={classes.modalContent}>
-                <AddDriveDetails />
-              </div>
-            </ReactModal>
-          </div>
-        </div>
-      </section>
       <section className={classes.intern}>
         <div className={classes.int1}>
           <div>
@@ -120,6 +87,6 @@ const AdminPage = () => {
       </section>
     </div>
   );
-};
+}
 
-export default AdminPage;
+export default Drives;

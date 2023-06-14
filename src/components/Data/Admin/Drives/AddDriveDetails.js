@@ -1,7 +1,8 @@
 import React from "react";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { addDoc, collection } from "firebase/firestore";
-import { db } from "../../firebase-auth";
+import { db } from "../../../../firebase-auth";
 import classes from "./AddDriveDetails.module.css";
 
 function AddDriveDetails() {
@@ -11,8 +12,10 @@ function AddDriveDetails() {
   const [packages, setPackages] = useState("");
   const [location, setLocation] = useState("");
   const [register, setRegister] = useState("");
+  const [description, setDescription] = useState("");
 
   const collectionData = collection(db, "drives");
+  const navigate = useNavigate();
 
   const createNewDrive = async (e) => {
     e.preventDefault();
@@ -29,6 +32,7 @@ function AddDriveDetails() {
       additional: register,
     });
     alert("Successfully added");
+    navigate("/adminPage");
   };
 
   return (
@@ -101,6 +105,18 @@ function AddDriveDetails() {
       <input
         value={register}
         onChange={(e) => setRegister(e.target.value)}
+        className={classes.input}
+        placeholder="Enter company name"
+      />
+      <br />
+
+      <label htmlFor="register" className={classes.label}>
+        Job Description
+      </label>
+      <br />
+      <input
+        value={description}
+        onChange={(e) => setDescription(e.target.value)}
         className={classes.input}
         placeholder="Enter company name"
       />

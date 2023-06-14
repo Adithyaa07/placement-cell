@@ -16,6 +16,7 @@ const Student = () => {
 
     try {
       await signInWithEmailAndPassword(auth, email, pass);
+      // localStorage.setItem("userEmail", res.user.email);
 
       navigate("/studentDetails");
     } catch (error) {

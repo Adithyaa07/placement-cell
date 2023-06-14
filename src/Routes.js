@@ -6,10 +6,13 @@ import Student from "./components/Pages/StudentLogin";
 import Register from "./components/Pages/Registration";
 import Forgot from "./components/Pages/ForgotPass";
 import Admin from "./components/Pages/Admin";
-import AdminPage from "./components/Data/AdminPage";
-import StudDetails from "./components/Data/StudentDetails";
-import StudentProfile from "./components/Data/studentProfile";
-import AvailableStudents from "./components/Data/AvailableStudents";
+import AdminPage from "./components/Data/Admin/AdminPage";
+import StudDetails from "./components/Data/Students/StudentDetails";
+import StudentProfile from "./components/Data/Students/studentProfile";
+import AvailableStudents from "./components/Data/Students/AvailableStudents";
+import ShowDriveDetails from "./components/Data/Students/ShowDriveDetails";
+import AddDriveDetails from "./components/Data/Admin/Drives/AddDriveDetails";
+import Drives from '../src/components/Data/Admin/Drives/Drives'
 
 const Route = () => {
   const router = createBrowserRouter([
@@ -22,6 +25,9 @@ const Route = () => {
     { path: "/studentDetails", element: <StudDetails /> },
     { path: "studentDetails/studentProfile", element: <StudentProfile /> },
     { path: "/AvailableStudents", element: <AvailableStudents /> },
+    { path: "/showDriveDetails", element: <ShowDriveDetails /> },
+    { path: "/addDriveDetails", element: <AddDriveDetails /> },
+    { path: '/drives', element: <Drives /> },
   ]);
 
   return <RouterProvider router={router} />;
