@@ -1,5 +1,8 @@
 /* AddDriveDetails.module.css */
 
+.body{
+  background: linear-gradient(to right, #7EE8FA, #EEC0C6);
+}
 .container {
     max-width: 400px;
     margin: 0 auto;

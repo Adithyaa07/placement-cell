@@ -1,9 +1,15 @@
-import React from "react";
-import classes from "./AddEventDetails.module.css";
-import { useState } from "react";
-import { db } from "../../../../firebase-auth";
+import React, { useState } from "react";
 import { collection, addDoc } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
+import {
+  Box,
+  Heading,
+  FormControl,
+  FormLabel,
+  Input,
+  Button,
+} from "@chakra-ui/react";
+import { db } from "../../../../firebase-auth";
 
 function AddEventDetails(props) {
   const [title, setTitle] = useState("");
@@ -28,37 +34,31 @@ function AddEventDetails(props) {
   };
 
   return (
-    <div className={classes.container}>
-      <h1 className={classes.heading}>Add Drive Details</h1>
+    <Box bgGradient="linear(to-r, black, gray.500)" p={4} color="white">
+      <Heading>Add Event Details</Heading>
 
-      <label htmlFor="title" className={classes.label}>
-        Title
-      </label>
-      <br />
-      <input
-        value={title}
-        onChange={(e) => setTitle(e.target.value)}
-        className={classes.input}
-        placeholder="Event details"
-      />
-      <br />
+      <FormControl mt={4}>
+        <FormLabel htmlFor="title">Title</FormLabel>
+        <Input
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
+          placeholder="Event title"
+        />
+      </FormControl>
 
-      <label htmlFor="description" className={classes.label}>
-        Event Description
-      </label>
-      <br />
-      <input
-        value={description}
-        onChange={(e) => setDescription(e.target.value)}
-        className={classes.input}
-        placeholder="Event details"
-      />
-      <br />
+      <FormControl mt={4}>
+        <FormLabel htmlFor="description">Event Description</FormLabel>
+        <Input
+          value={description}
+          onChange={(e) => setDescription(e.target.value)}
+          placeholder="Event description"
+        />
+      </FormControl>
 
-      <button onClick={addEvent} className={classes.button}>
+      <Button mt={4} colorScheme="teal" onClick={addEvent}>
         Add Event
-      </button>
-    </div>
+      </Button>
+    </Box>
   );
 }
 

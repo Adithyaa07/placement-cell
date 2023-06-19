@@ -36,95 +36,99 @@ function AddDriveDetails() {
   };
 
   return (
-    <div className={classes.container}>
-      <h1 className={classes.heading}>Add Drive Details</h1>
-      <label htmlFor="title" className={classes.label}>
-        Company Name
-      </label>
-      <br />
-      <input
-        value={title}
-        onChange={(e) => setTitle(e.target.value)}
-        className={classes.input}
-        placeholder="Enter company name"
-      />
-      <br />
+    <div className={classes.body}>
+      <div className={classes.container}>
+        <h1 className={classes.heading}>Add Drive Details</h1>
+        <label htmlFor="title" className={classes.label}>
+          Company Name
+        </label>
+        <br />
+        <input
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
+          className={classes.input}
+          placeholder="Enter company name"
+        />
+        <br />
 
-      <label htmlFor="eligibility" className={classes.label}>
-        Eligibility
-      </label>
-      <br />
-      <input
-        value={eligible}
-        onChange={(e) => setEligible(e.target.value)}
-        className={classes.input}
-        placeholder="Enter eligibility"
-      />
-      <br />
+        <label htmlFor="eligibility" className={classes.label}>
+          Eligibility
+        </label>
+        <br />
+        <input
+          value={eligible}
+          onChange={(e) => setEligible(e.target.value)}
+          className={classes.input}
+          placeholder="Enter eligibility"
+        />
+        <br />
 
-      <label htmlFor="role" className={classes.label}>
-        Role
-      </label>
-      <br />
-      <input
-        value={role}
-        onChange={(e) => setRole(e.target.value)}
-        className={classes.input}
-        placeholder="Student's role"
-      />
-      <br />
+        <label htmlFor="role" className={classes.label}>
+          Role
+        </label>
+        <br />
+        <input
+          value={role}
+          onChange={(e) => setRole(e.target.value)}
+          className={classes.input}
+          placeholder="Student's role"
+        />
+        <br />
 
-      <label htmlFor="package" className={classes.label}>
-        Package
-      </label>
-      <br />
-      <input
-        value={packages}
-        onChange={(e) => setPackages(e.target.value)}
-        className={classes.input}
-        placeholder="Package"
-      />
-      <br />
+        <label htmlFor="package" className={classes.label}>
+          Package
+        </label>
+        <br />
+        <input
+          value={packages}
+          onChange={(e) => setPackages(e.target.value)}
+          className={classes.input}
+          placeholder="Package"
+        />
+        <br />
 
-      <label htmlFor="location" className={classes.label}>
-        Location
-      </label>
-      <br />
-      <input
-        value={location}
-        onChange={(e) => setLocation(e.target.value)}
-        className={classes.input}
-        placeholder="Location"
-      />
-      <br />
+        <label htmlFor="location" className={classes.label}>
+          Location
+        </label>
+        <br />
+        <input
+          value={location}
+          onChange={(e) => setLocation(e.target.value)}
+          className={classes.input}
+          placeholder="Location"
+        />
+        <br />
 
-      <label htmlFor="register" className={classes.label}>
-        Register Here
-      </label>
-      <br />
-      <input
-        value={register}
-        onChange={(e) => setRegister(e.target.value)}
-        className={classes.input}
-        placeholder="Enter company name"
-      />
-      <br />
+        <label htmlFor="register" className={classes.label}>
+          Register Here
+        </label>
+        <br />
+        <input
+          value={register}
+          onChange={(e) => setRegister(e.target.value)}
+          className={classes.input}
+          placeholder="Enter company name"
+        />
+        <br />
 
-      <label htmlFor="register" className={classes.label}>
-        Job Description
-      </label>
-      <br />
-      <input
-        value={description}
-        onChange={(e) => setDescription(e.target.value)}
-        className={classes.input}
-        placeholder="Enter company name"
-      />
-      <br />
+        <label htmlFor="register" className={classes.label}>
+          Job Description
+        </label>
+        <br />
+        <input
+          value={description}
+          onChange={(e) => setDescription(e.target.value)}
+          className={classes.input}
+          placeholder="Enter company name"
+        />
+        <br />
 
-      <button onClick={createNewDrive} className={classes.button}>
-        Add
-      </button>
+        <div className="text-center">
+          <button onClick={createNewDrive} className={classes.button}>
+            Add Drive
+          </button>
+        </div>
+      </div>
     </div>
   );
 }

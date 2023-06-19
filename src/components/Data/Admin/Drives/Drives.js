@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import classes from '../AdminPage.module.css'
+import classes from './Drives.module.css';
 import { db } from "../../../../firebase-auth";
 import {
   collection,
@@ -8,6 +8,7 @@ import {
   query,
   onSnapshot,
 } from "firebase/firestore";
+
 
 function Drives() {
   const [users, setUsers] = useState([]);
@@ -34,13 +35,19 @@ function Drives() {
 
   return (
     <div>
-      <section className={classes.intern}>
-        <div className={classes.int1}>
+      <div className={classes.body}>
+        
           <div>
-            <h2 className="h2">Drives</h2>
+           <div className={classes.logo}>
+           <h1>Drives </h1>
+           </div>
+          
             <div className={classes.container}>
               {users.map((user) => {
                 return (
+                  <div className="row">
+                    <div className="row g-4">
+                    <div className="card  mx-auto w-50 ">
                   <div key={user.id} className={classes.driveCard}>
                     <h1 className={classes.driveTitle}>Title: {user.title}</h1>
                     <div className={classes.driveDetails}>
@@ -79,12 +86,16 @@ function Drives() {
                       </button>
                     </div>
                   </div>
+                  </div>
+                  </div>
+                  </div>
                 );
               })}
+              
             </div>
           </div>
-        </div>
-      </section>
+       
+      </div>
     </div>
   );
 }

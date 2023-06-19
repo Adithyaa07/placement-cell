@@ -12,7 +12,8 @@ import StudentProfile from "./components/Data/Students/studentProfile";
 import AvailableStudents from "./components/Data/Students/AvailableStudents";
 import ShowDriveDetails from "./components/Data/Students/ShowDriveDetails";
 import AddDriveDetails from "./components/Data/Admin/Drives/AddDriveDetails";
-import Drives from '../src/components/Data/Admin/Drives/Drives'
+import Drives from "../src/components/Data/Admin/Drives/Drives";
+import ShowEventDetails from "./components/Data/Students/ShowEventDetails";
 
 const Route = () => {
   const router = createBrowserRouter([
@@ -26,8 +27,9 @@ const Route = () => {
     { path: "studentDetails/studentProfile", element: <StudentProfile /> },
     { path: "/AvailableStudents", element: <AvailableStudents /> },
     { path: "/showDriveDetails", element: <ShowDriveDetails /> },
+    { path: "/ShowEventDetails", element: <ShowEventDetails /> },
     { path: "/addDriveDetails", element: <AddDriveDetails /> },
-    { path: '/drives', element: <Drives /> },
+    { path: "/drives", element: <Drives /> },
   ]);
 
   return <RouterProvider router={router} />;

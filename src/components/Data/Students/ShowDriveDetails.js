@@ -1,14 +1,15 @@
 import React from "react";
-import classes from "./studentDetails.module.css";
+import classes from "./showDriveDetails.module.css";
 import { useEffect, useState } from "react";
 
 import { collection, query, onSnapshot } from "firebase/firestore";
 import { db } from "../../../firebase-auth";
+import "..//..//..//..//node_modules/bootstrap/dist/css/bootstrap.min.css";
 function ShowDriveDetails() {
   const usersCollectionRef = collection(db, "drives");
-  const eventsRef = collection(db, "events");
+  
   const [details, setDetails] = useState([]);
-  const [events, setEvents] = useState([]);
+
 
   useEffect(() => {
     const q = query(usersCollectionRef);
@@ -23,71 +24,76 @@ function ShowDriveDetails() {
     return () => unSub();
   }, [usersCollectionRef]);
 
-  useEffect(() => {
-    const q = query(eventsRef);
-    const unSub = onSnapshot(q, (querySnapshot) => {
-      let eventsArr = [];
-      querySnapshot.forEach((doc) => {
-        eventsArr.push({ ...doc.data(), id: doc.id });
-      });
-      setEvents(eventsArr);
-    });
 
-    return () => unSub();
-  }, [eventsRef]);
 
   return (
     <div>
-      <div className={classes.driveContainer}>
-        <h1>Available Drives </h1>
-        {details && details.length > 0 ? (
-          details.map((user) => (
-            <div key={user.id} className={classes.driveCard}>
-              <h1 className={classes.driveTitle}>Title: {user.title}</h1>
-              <div className={classes.driveDetails}>
-                <span className={classes.driveLabel}>Eligibility:</span>
-                <span className={classes.driveValue}>{user.eligibility}</span>
+      <div className={classes.body}>
+        <div className={classes.driveContainer}>
+          <div className={classes.logo}>
+            <h1>Available Drive</h1>
+          </div>
+          {details && details.length > 0 ? (
+            details.map((user) => (
+              <div className="row">
+                <div className="row g-4">
+                  <div className="card  mx-auto w-50 ">
+                    <div className={classes.content}>
+                      <div key={user.id} className={classes.driveCard}>
+                        <h1 className={classes.driveTitle}>
+                          Title: {user.title}
+                        </h1>
+                        <div className={classes.driveDetails}>
+                          <span className={classes.driveLabel}>
+                            Eligibility:
+                          </span>
+                          <span className={classes.driveValue}>
+                            {user.eligibility}
+                          </span>
+                        </div>
+                        <div className={classes.driveDetails}>
+                          <span className={classes.driveLabel}>Role:</span>
+                          <span className={classes.driveValue}>
+                            {user.role}
+                          </span>
+                        </div>
+                        <div className={classes.driveDetails}>
+                          <span className={classes.driveLabel}>Package:</span>
+                          <span className={classes.driveValue}>
+                            {user.package}
+                          </span>
+                        </div>
+                        <div className={classes.driveDetails}>
+                          <span className={classes.driveLabel}>Location:</span>
+                          <span className={classes.driveValue}>
+                            {user.location}
+                          </span>
+                        </div>
+                        <div className={classes.driveDetails}>
+                          <span className={classes.driveLabel}>
+                            Apply here:
+                          </span>
+                          <span className={classes.driveValue}>
+                            {user.additional}
+                          </span>
+                        </div>
+                        <button className={classes.button}> Apply Now</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
-              <div className={classes.driveDetails}>
-                <span className={classes.driveLabel}>Role:</span>
-                <span className={classes.driveValue}>{user.role}</span>
-              </div>
-              <div className={classes.driveDetails}>
-                <span className={classes.driveLabel}>Package:</span>
-                <span className={classes.driveValue}>{user.package}</span>
-              </div>
-              <div className={classes.driveDetails}>
-                <span className={classes.driveLabel}>Location:</span>
-                <span className={classes.driveValue}>{user.location}</span>
-              </div>
-              <div className={classes.driveDetails}>
-                <span className={classes.driveLabel}>Apply here:</span>
-                <span className={classes.driveValue}>{user.additional}</span>
-              </div>
-              <button className={classes.button}> Apply Now</button>
-            </div>
-          ))
-        ) : (
-          <div>No drive details available</div>
-        )}
-        <br />
-        <br />
-      </div>
-      <div>
-        <h1>Available Events</h1>
-        {events && events.length > 0 ? (
-          events.map((user) => (
-            <div key={user.id} className={classes.driveCard}>
-              <h1 className={classes.driveTitle}>Title: {user.title}</h1>
-              <div className={classes.driveDetails}>
-                <span className={classes.driveLabel}>Event Information:</span>
-                <span className={classes.driveValue}>{user.description}</span>
-              </div>
-            </div>
-          ))
-        ) : (
-          <div>No Events available</div>
-        )}
+            ))
+          ) : (
+            <div>No drive details available</div>
+          )}
+          <br />
+          <br />
+        </div>
+
+       
+
+ 
       </div>
     </div>
   );

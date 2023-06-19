@@ -1,79 +1,138 @@
-import React from "react";
-import { useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { auth } from "../../firebase-auth";
 import { signInWithEmailAndPassword } from "firebase/auth";
-import classes from "./StudentLogin.module.css";
+import { useContext } from "react";
+import { UserContext } from "../../context/AuthContext";
+import { useToast } from "@chakra-ui/react";
+import React, { useState } from "react";
+import {
+  Box,
+  Flex,
+  FormControl,
+  FormLabel,
+  Input,
+  Button,
+  Alert,
+  AlertIcon,
+  CloseButton,
+  Text,
+} from "@chakra-ui/react";
+import { RiUserFill, RiLockPasswordFill } from "react-icons/ri";
 
 const Student = () => {
   const [email, setEmail] = useState("");
-  const [pass, setPass] = useState("");
+  const [password, setPassword] = useState("");
+  const [showAlert, setShowAlert] = useState(false);
+  const toast = useToast();
 
   const navigate = useNavigate();
+  const user = useContext(UserContext);
 
-  const login = async (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
 
     try {
-      await signInWithEmailAndPassword(auth, email, pass);
-      // localStorage.setItem("userEmail", res.user.email);
+      await signInWithEmailAndPassword(auth, email, password);
+      toast({
+        position: "top",
+        title: "login success",
+        description: "You are logged in successfully.",
+        status: "success",
+        duration: 2000,
+        isClosable: true,
+      });
+
+      if (!user) {
+        return <navigate to="/student" />;
+      }
 
       navigate("/studentDetails");
     } catch (error) {
-      console.log(error.message);
-      alert("Not registered");
+      setShowAlert(true);
+      setEmail("");
+      setPassword("");
     }
   };
 
   return (
-    <body>
-      <div className={classes.background}>
-        <form className={classes.loginForm} onSubmit={login}>
-          <h2>Login</h2>
-          <div className={classes.content}>
-            <div className={classes.inputField}>
-              <label className={classes.label} htmlFor="email">
-                Email:
-              </label>
-              <input
-                className={classes.input}
+    <Flex
+      height="100vh"
+      alignItems="center"
+      justifyContent="center"
+      bgGradient="linear(to right, teal.400, blue.500)"
+    >
+      <Box
+        p="8"
+        mx="auto"
+        maxWidth="400px"
+        borderWidth="1px"
+        borderRadius="md"
+        boxShadow="md"
+        bg="white"
+      >
+        {showAlert && (
+          <Alert status="error" mb="4">
+            <AlertIcon />
+            Invalid email or password/Not Registered. Please try again.
+            <CloseButton
+              onClick={() => setShowAlert(false)}
+              position="absolute"
+              right="8px"
+              top="8px"
+            />
+          </Alert>
+        )}
+        <form onSubmit={handleLogin}>
+          <Text
+            fontSize="px"
+            fontWeight="semibold"
+            lineHeight="110%"
+            letterSpacing="-1%"
+          >
+            Student's Login
+          </Text>
+          <FormControl mb="4">
+            <FormLabel>Email</FormLabel>
+            <Flex>
+              <Input
+                type="email"
+                placeholder="Enter your email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                type="email"
-                placeholder="youremail@gmail.com"
-                id="email"
-                name="email"
+                required
               />
-            </div>
-            <div className={classes.inputField}>
-              <label className={classes.label} htmlFor="password">
-                Password:
-              </label>
-              <input
-                className={classes.input}
-                value={pass}
-                onChange={(e) => setPass(e.target.value)}
+              <Box ml="2">
+                <RiUserFill size="20px" color="gray.500" />
+              </Box>
+            </Flex>
+          </FormControl>
+          <FormControl mb="4">
+            <FormLabel>Password</FormLabel>
+            <Flex>
+              <Input
                 type="password"
-                placeholder="********"
-                id="password"
-                name="password"
+                placeholder="Enter your password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
               />
-            </div>
-          </div>
-          <div className={classes.action}>
-            <button className={classes.button} type="submit">
-              Log In
-            </button>
-
-            <div className={classes.action}>
-              <NavLink to="studentRegister">Don't have an account</NavLink>
-
-              <NavLink to="studentForgot">Forgot password</NavLink>
-            </div>
-          </div>
+              <Box ml="2">
+                <RiLockPasswordFill size="20px" color="gray.500" />
+              </Box>
+            </Flex>
+          </FormControl>
+          <Button type="submit" colorScheme="teal" width="full">
+            Login
+          </Button>
+          <span>
+            <NavLink to="studentRegister">Don't have an account ?</NavLink>
+          </span>
+          <span>
+            <NavLink to="studentForgot">Forgot password</NavLink>
+          </span>
         </form>
-      </div>
-    </body>
+      </Box>
+    </Flex>
   );
 };
 

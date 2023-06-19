@@ -1,0 +1,40 @@
+
+.body {
+    background-color: rgb(192, 131, 230);
+padding-bottom:20px;
+}
+.logo{
+    text-align: center;
+    color:#fff;
+    padding-top:10px;
+    font-size: 50px;
+
+    }
+.logo:hover{
+    transform: scale(1.05);
+}
+.driveTitle{
+    font-size: 30px;
+}
+.driveLabel{
+    font-weight: bold;
+    font-size:18px;
+    
+}
+.driveButton{
+    margin-top:10px;
+    border-radius:12px;
+    width:120px;
+    height:35px;
+    background-color:  rgb(192, 131, 230);
+    color:#fff;
+    font-weight: bold;
+    margin-left:15px;
+    
+}
+
+.driveValue{
+    font-size:18px;
+    padding-left:12px;
+    text-align: justify;
+}

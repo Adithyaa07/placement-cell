@@ -1,0 +1,59 @@
+.body {
+    background-color: rgb(192, 131, 230);
+padding-bottom:20px;
+}
+.logo{
+    text-align: center;
+    color:#fff;
+    padding-top:10px;
+
+    }
+.logo:hover{
+    transform: scale(1.05);
+}
+.container{
+    padding-left:200px;
+    
+}
+.content{
+    padding-left:30px;
+}
+
+.driveDetails .driveLabels{
+    font-weight: bold;
+}
+.logo1{
+    text-align: center;
+    color:#fff;
+    padding-top:10px;
+    background-color: rgb(192, 131, 230);
+    padding-bottom:15px;
+
+    }
+    .logo1:hover{
+        transform: scale(1.05);
+    }
+    .driveTitle{
+        font-size: 25px;
+    }
+    .driveLabel{
+        font-weight: bold;
+        font-size:18px;
+        
+    }
+    .button{
+        margin-top:10px;
+        border-radius:12px;
+        width:120px;
+        height:35px;
+        background-color:  rgb(192, 131, 230);
+        color:#fff;
+        font-weight: bold;
+        
+    }
+    
+    .driveValue{
+        font-size:18px;
+        padding-left:12px;
+        text-align: justify;
+    }
